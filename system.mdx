@@ -1,0 +1,82 @@
+---
+title: Administer the system
+description: Configure storage, back up the database, view logs, and check server health.
+---
+
+You perform these tasks on the **System** page.
+
+Only administrators can use this page. Regular users cannot open it.
+
+## Edit general settings
+
+1. Open the **Global Settings** page.
+2. Edit any value in the **System Parameters** table.
+3. Click **Save Changes**.
+
+Each row pairs a **Parameter Key** with its **Value**. Use **Add New Setting** to add a key that does not exist yet.
+
+Change only keys you understand. Wrong values can break recording.
+
+## Manage storage locations
+
+Recordings are written to your storage locations in priority order. Priority `0` fills first.
+
+The table shows **Priority**, **Path**, **Max fill**, **Used**, **Free**, and **Storage estimation** for each location. **Storage estimation** tells you how much more recording time fits.
+
+### Add a location
+
+1. Prepare the folder on the server first. It must exist, be empty, and belong to user `bluecherry` and group `bluecherry`.
+2. Grant execute access on every directory in the path to the web server user.
+3. Click **Add location**.
+4. Enter the **Path** and a **Max fill %**.
+5. Click **Check** to verify the folder.
+6. Click **Save storage locations**.
+
+A common path is `/var/lib/bluecherry/recordings`.
+
+Saving replaces the whole location list. Priority follows the order of the rows.
+
+## Back up the database
+
+### Prepare and download a backup
+
+1. Choose what to skip: **Skip events and recordings index**, **Skip devices (also skips events)**, or **Skip users**.
+2. Enter the **Database password**.
+3. Click **Prepare backup**.
+4. Click **Download** to fetch the archive.
+
+Prepare the backup before every download. The page shows which database and user it backs up.
+
+### Restore from a backup archive
+
+1. Choose your `.tgz` archive under **Restore from a backup archive (.tgz)**.
+2. Check the **Backup date** and the **Contents** badges for events, devices, and users.
+3. Enter the **Database password**.
+4. Click **Confirm restore**.
+
+Restoring overwrites the current database. Reload the page after the restore finishes.
+
+## Check server status
+
+The **Server status** card shows live host and `bc-server` health.
+
+You see **CPU usage**, **Memory**, the `bc-server` badge (**up** or **down**), and **System uptime**. Click **Refresh** to update the numbers.
+
+## View logs
+
+1. Pick a log: **Bluecherry Server Log** or **Bluecherry WWW Log**.
+2. Pick how many **Lines** to show: `20`, `100`, `500`, `1000`, or **All**.
+3. Click **Refresh** to reload.
+
+Click **Download all** to download the full log bundle. The bundle is a `bc-logs.tar` file with both logs plus system diagnostics.
+
+## Run event statistics
+
+The **Event statistics** card counts events grouped by date parts.
+
+1. Choose a **Primary grouping** and a **Secondary grouping**. Each can be **Year**, **Month**, **Day**, or **Hour**.
+2. Set **Start** and **End** to limit the range.
+3. Choose event types: **All events**, **Motion only**, or **Continuous only**.
+4. Click **Run**.
+
+The table shows the **Count** for each grouping pair. **Total records** shows how many events matched.

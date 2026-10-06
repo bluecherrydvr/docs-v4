@@ -1,0 +1,144 @@
+---
+title: Manage cameras
+description: Add cameras, tune motion detection, set recording schedules, and configure PTZ.
+---
+
+Your cameras live on the **Device Management** page at `/devices`.
+
+The table shows each camera's **Name**, **Host**, **Path**, and **Status**.
+**Status** is either **Enabled** or **Disabled**.
+Each row has five action buttons: **PTZ settings**, **Recording schedule**, **Motion detection**, **Edit**, and **Delete**.
+
+## Add a camera
+
+Click **Add Camera** to open the **Add New Camera** dialog.
+You connect one RTSP camera at a time.
+There is no automatic discovery wizard yet, so enter the details manually.
+
+Fill in these fields:
+
+- **Device Name**: a friendly name such as Front Door Cam.
+- **Host / IP**: the camera's IP address or hostname.
+- **RTSP Port**: the RTSP port (default `554`).
+- **RTSP Path**: the stream path, for example `/h264/ch1/main/av_stream`.
+- **Username** and **Password**: the camera's login credentials.
+- **Enable Device**: leave this checked to activate the camera.
+
+Active cameras count toward your license usage and can record and stream.
+Click **Create Device** to save.
+
+<Note>
+There is no ONVIF setup wizard, port probe, or connection check yet.
+If the camera does not appear in live view, double-check the host, port, path, and credentials.
+</Note>
+
+## Edit a camera
+
+Click **Edit** on a camera row to open the **Edit Device** dialog.
+Update the connection details as needed.
+Click **Update Device** to save.
+
+## Enable or disable a camera
+
+You enable or disable a camera through the edit form.
+Click **Edit**, check or uncheck **Enable Device**, then click **Update Device**.
+Disabled cameras stop recording and streaming.
+There is no one-click toggle in the table yet.
+
+## Delete a camera
+
+Click **Delete** on a camera row.
+Confirm the prompt to remove the camera permanently.
+
+## Set up motion detection
+
+Click **Motion detection** on a camera row to open the motion dialog.
+The dialog shows a sensitivity grid over the camera frame.
+Paint zones with one of six levels: **Off**, **Minimal**, **Low**, **Average**, **High**, or **Very high**.
+Click or drag across cells to paint them.
+Use **Fill all** to paint the whole frame with the selected level.
+Use **Clear all** to turn the whole frame off.
+
+Below the grid you can tune the detector:
+
+- **Algorithm**: choose **Default**, **Experimental**, or **CV temporal**.
+- **Downscale**: scale frames before analysis (`0.125`, `0.25`, `0.5`, or `1.0`).
+- **Pre buffer (s)** and **Post buffer (s)**: seconds of video kept before and after motion.
+- **Min area %** and **Max area %**: smallest and largest motion area that triggers an event.
+- **Min frames** and **Max frames**: shortest and longest motion duration that triggers an event.
+- **Blend ratio**: how much each frame blends into the reference image.
+- **Debug snapshots**: save debug images to help you tune the settings.
+
+Click **Save** to apply your changes.
+
+## Set recording schedules
+
+Click **Global schedule** to set the default schedule for all cameras.
+Click **Recording schedule** on a camera row to set that camera's schedule.
+Paint each hour of the week with one of five modes:
+
+- **Off**: do not record.
+- **Motion**: record when motion is detected.
+- **Cont + Motion**: record continuously and flag motion.
+- **Trigger**: record when an external trigger fires.
+- **Continuous**: record all the time.
+
+Click or drag across hours to paint them.
+Use **Fill all** to paint the whole week with the selected mode.
+
+A per-camera schedule only takes effect when you check **Use this schedule instead of the global schedule**.
+Otherwise the camera follows the global schedule.
+You can also check **Trigger ONVIF events** to forward recording events to the camera.
+
+## Configure PTZ
+
+PTZ setup has three parts: drivers, per-camera settings, and live control.
+
+### Manage PTZ drivers
+
+Click **PTZ drivers** to open the driver manager.
+Each driver is a set of URL templates for an HTTP PTZ camera.
+Use the `%USERNAME%`, `%PASSWORD%`, and `%ID%` placeholders in the templates.
+A driver whose protocol is `onvif` speaks ONVIF instead of HTTP.
+
+The table lists each driver's **Name**, **Protocol**, and **Port**.
+Click **New driver** to add one.
+Enter a **Name**, **Protocol**, and **Port**.
+Leave **HTTP auth** checked to send credentials in the Authorization header.
+Uncheck it to pass credentials through URL placeholders instead.
+Fill in the movement commands (**Left**, **Right**, **Up**, **Down**, diagonals), **Zoom out**, **Zoom in**, **Focus in**, **Focus out**, **Stop**, **Stop zoom**, **Preset save (%ID%)**, and **Preset go (%ID%)**.
+Click **Create** to save.
+
+Deleting a driver removes PTZ from every camera that uses it.
+
+### Assign PTZ to a camera
+
+Click **PTZ settings** on a camera row to open the **PTZ Settings** dialog.
+For an IP camera, pick a driver from the **PTZ driver** list.
+Pick **No PTZ** to disable PTZ on that camera.
+For an analog camera, enter the serial parameters instead: **Device path** (for example `/dev/ttyS0`), **Protocol** (for example `pelco-d`), **Addr**, **Baud**, **Bits**, **Parity**, and **Stop**.
+Click **Save** to apply.
+
+### Move the camera and use presets
+
+Hover over a camera tile in live view to reveal the PTZ overlay.
+The overlay appears only on cameras with PTZ configured.
+Hold the arrow buttons to pan (**Pan left**, **Pan right**) and tilt (**Tilt up**, **Tilt down**).
+Hold the plus and minus buttons to **Zoom in** and **Zoom out**.
+Press **Stop** to halt movement.
+
+To save the current position, type a name into **Save position as...** and click **Save**.
+To return to a saved position, pick it from the **Preset** list and click **Go**.
+Click **Delete preset** to remove the selected preset.
+
+## Features not available yet
+
+These camera features are planned but not built:
+
+- ONVIF setup wizard, port probe, and connection check.
+- Automatic camera discovery on your network.
+- Per-camera FPS and resolution tweaks.
+- Video adjustments (brightness, contrast, saturation, hue).
+- Re-encode settings.
+- Manual motion trigger.
+- A link that opens the camera's own web page.

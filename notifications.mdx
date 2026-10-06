@@ -1,0 +1,62 @@
+---
+title: Notifications
+description: Set up email rules, webhooks, and mail server settings for motion alerts.
+---
+
+Open **Notifications** in the sidebar to manage alerts. This page holds **Email rules**, **Webhooks**, and **Mail server** settings.
+
+You need an administrator account to manage notifications. Other accounts are rejected.
+
+## Manage email rules
+
+The **Email rules** section controls who gets emailed for motion on which cameras, and when. If you have no rules yet, you see **No notification rules yet.**
+
+Each rule row shows **Days**, **Time**, **Cameras**, **Users**, **Limit/hr**, and **Status**. A limit of 0 means **Unlimited**. Status is **Enabled** or **Disabled**.
+
+Click **New rule** to create a rule. Click **Enable** or **Disable** to flip a rule without deleting it. Use the pencil button to edit a rule. Use the trash button to delete a rule after you confirm.
+
+## Fill in a notification rule
+
+The **New notification rule** dialog emails the selected users when motion is detected on the selected cameras, within the day/time window.
+
+Pick **Days of week** with the Mon–Sun checkboxes. New rules default to weekdays. Set **Start time** and **End time** with the **Hour** and **Min** dropdowns. New rules default to 08:00–18:00.
+
+Tick cameras under **Cameras** and recipients under **Users**. Set **Emails per hour limit** to cap mail per rule per hour. Use 0 for unlimited.
+
+Leave **Rule enabled** ticked to activate the rule immediately. Click **Create rule** to save a new rule, or **Save changes** to keep edits. Click **Cancel** to discard.
+
+## Manage webhooks
+
+The **Webhooks** section posts JSON payloads to external URLs on server events. If you have no webhooks yet, you see **No webhooks yet.**
+
+Each webhook row shows **Label**, **URL**, **Events**, **Cameras**, and **Status**. Empty events means **All**, and empty cameras means **All**.
+
+Click **New webhook** to create one. Use the pencil button to edit a webhook. Use the trash button to delete a webhook after you confirm.
+
+## Fill in a webhook
+
+The **New webhook** dialog posts a JSON event payload to your URL.
+
+Enter a **Label** of up to 50 characters. Enter the destination **URL**, which must start with `http://` or `https://`.
+
+Tick event types under **Events (none selected = all)**. You can choose `motion_event`, `device_state`, and `solo`. Tick cameras under **Cameras (none selected = all)**.
+
+Leave **Webhook enabled** ticked to activate the webhook immediately. Click **Create webhook** to save a new webhook, or **Save changes** to keep edits. Click **Cancel** to discard.
+
+## Test-fire a webhook
+
+Click the test button (**Send a test event**) on a webhook row to fire a sample `motion_event` at that webhook. A success message reports the HTTP status, such as **Webhook fired (HTTP 200)**. A failure reports the returned status instead.
+
+## Configure the mail server
+
+The **Mail server** section controls how Bluecherry sends notification and test emails.
+
+Set **Mail service** to **System mail (sendmail)** or **SMTP server**. Set **Transport security** to **None**, **TLS**, or **SSL**.
+
+Enter **SMTP host** and **Port**. Enter **SMTP username** and **SMTP password** when your server needs login. Enter the sender in **From address**.
+
+Click **Save mail settings** to keep your changes. If mail fails with your configuration, the page shows **Unable to send mail with this configuration** with the error.
+
+## Send a test email
+
+Enter an address in **Send a test email to** and click **Send test email**. A success message confirms the mail was sent. A failure message explains what went wrong and updates the mail warning above.

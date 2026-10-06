@@ -1,0 +1,67 @@
+---
+title: Changelog
+description: What is new in the Bluecherry DVR v4 web interface.
+---
+
+## Unreleased / v4.0 preview
+
+The v4 web interface replaces the legacy web UI. You log in at `/login` and manage your DVR from a new dashboard.
+
+### Devices
+
+You manage cameras on the **Device Management** page (`/devices`).
+
+- You add a camera with **Add Camera** and edit or delete cameras from the list.
+- You only see cameras you are allowed to access.
+- You tune motion detection per camera with a motion-map editor.
+- You set recording schedules per camera or for the whole system with **Global schedule**.
+- You configure PTZ settings and presets, manage drivers with **PTZ drivers**, and move PTZ cameras live.
+
+### Live
+
+You watch your cameras on the **Live View** page (`/live`).
+
+- You see a live grid of your cameras in the browser.
+
+### Recordings
+
+You find and play recordings on the **Recordings** page (`/media`).
+
+- You filter the recordings list to find what you need.
+- You play a recording in a dialog and download it with resumable downloads.
+
+### Events
+
+You review motion and system events on the **Event Log** page (`/events`).
+
+- You filter the event list and open any event for detail.
+- You add comments to events and view their tags.
+
+### Notifications
+
+You set up alerts on the **Notifications** page (`/notifications`).
+
+- You create email rules with schedules in the **Email rules** card.
+- You test a rule with a test send before you rely on it.
+- You configure your mail server in the **Mail server** card and send a test email.
+- You create webhooks in the **Webhooks** card and test-fire them.
+
+### Users
+
+You manage accounts on the **User Management** page (`/users`).
+
+- You create users with **Add User** and edit or delete them.
+- You grant access flags such as admin setup access per user.
+
+### System
+
+You administer storage, backup, logs, and statistics on the **System** page (`/system`).
+
+- You add storage folders with **Add location** and check each path with **Check**.
+- You see disk usage, free space, and recording-time estimates per location.
+- You save all locations at once with **Save storage locations**.
+- You prepare a database backup with **Prepare backup** and fetch it with **Download**.
+- You restore from a backup archive (`.tgz`) and confirm with **Confirm restore**.
+- You watch host CPU, memory, uptime, and `bc-server` status in the **Server status** card.
+- You read server and web logs in the **Logs** card and grab a full bundle with **Download all**.
+- You count events grouped by year, month, day, or hour in the **Event statistics** card with **Run**.
