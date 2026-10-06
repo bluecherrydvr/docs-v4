@@ -5,7 +5,9 @@ description: "Watch your cameras live in the camera grid."
 
 Open **Live View** in the sidebar to watch your cameras.
 
-The page shows every camera you can access in a grid. Streams start automatically when the page loads.
+The page shows a grid of camera tiles. Streams start automatically when the page loads. Your grid is kept for the rest of the browser session.
+
+![The live view grid with the layout toolbar above it](/images/live-grid.png)
 
 ## Read the camera tiles
 
@@ -29,10 +31,30 @@ To return to a saved position, pick it from the **Preset** list and click **Go**
 
 Cameras without PTZ show no controls.
 
+## Arrange the grid
+
+Click a preset (**1**, **4**, **9**, **16**) for a square grid, or use **+R** / **−R** and **+C** / **−C** to add and remove rows and columns. Shrinking the grid drops tiles that fall outside it.
+
+Click an empty tile to assign a camera to it. Hover over a filled tile to assign a different camera or empty the tile.
+
+![Picking a camera for an empty tile](/images/live-camera-picker.png)
+
+## Save named layouts
+
+Use the layout dropdown to load one of your saved layouts.
+
+![Loading a saved layout from the dropdown](/images/live-layouts-menu.png)
+
+Click **Save** to overwrite the current layout with the grid on screen, or **Save as…** to store it under a new name.
+
+![Saving the current grid under a new name](/images/live-save-layout.png)
+
+Click **Delete** to remove the current layout, or **Clear** to empty the grid.
+
+Layouts are per user, and layouts you save in the classic web UI appear here too.
+
 ## Know the current limits
 
 Streams play without sound. Audio support is planned but not available yet.
 
-You cannot change the grid layout or the number of columns. The grid adjusts to your screen width automatically.
-
-You cannot save named layouts yet. Active-camera polling is not available either.
+Active-camera polling is not available.
