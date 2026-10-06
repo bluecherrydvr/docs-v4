@@ -7,6 +7,14 @@ Open **Events** in the sidebar to review what your cameras recorded.
 
 The **Event Log** page lists events newest first. Each row shows **Date & Time**, **Device**, **Type**, and **Info**.
 
+## Trigger types
+
+**Type** tells you what started a recording: **Motion**, **Person**, **Vehicle**, **Face**, **Pet** (dog/cat), **Line crossing**, **Continuous**, or a device status such as **Video signal loss**.
+
+Smart types come from the camera's own ONVIF analytics when the camera supports them; otherwise motion is detected by the server. Recordings started by a smart trigger also carry the type in the filename, e.g. `14-22-01-person.mp4`.
+
+A recording can contain several trigger types (a person and a vehicle in the same clip). Clients that support it show every type; the event **Type** always names the trigger that started the recording.
+
 ## Filter by camera
 
 Use the **Filter by Camera** dropdown to show one camera. Select **All Cameras** to show every camera again.

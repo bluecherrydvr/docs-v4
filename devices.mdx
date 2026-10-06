@@ -7,13 +7,13 @@ Your cameras live on the **Device Management** page at `/devices`.
 
 The table shows each camera's **Name**, **Host**, **Path**, and **Status**.
 **Status** is either **Enabled** or **Disabled**.
-Each row has five action buttons: **PTZ settings**, **Recording schedule**, **Motion detection**, **Edit**, and **Delete**.
+Each row has six action buttons: **PTZ settings**, **Recording schedule**, **Motion detection**, **Check connection**, **Edit**, and **Delete**.
 
 ## Add a camera
 
-Click **Add Camera** to open the **Add New Camera** dialog.
+For ONVIF cameras, discover them instead of typing stream URLs by hand (see below).
+For anything else, click **Add Camera** to open the **Add New Camera** dialog.
 You connect one RTSP camera at a time.
-There is no automatic discovery wizard yet, so enter the details manually.
 
 Fill in these fields:
 
@@ -28,9 +28,30 @@ Active cameras count toward your license usage and can record and stream.
 Click **Create Device** to save.
 
 <Note>
-There is no ONVIF setup wizard, port probe, or connection check yet.
-If the camera does not appear in live view, double-check the host, port, path, and credentials.
+If the camera does not appear in live view, run **Check connection** on its row, then double-check the host, port, path, and credentials.
 </Note>
+
+## Discover ONVIF cameras
+
+Click **Discover cameras** to probe your LAN for ONVIF cameras.
+Click **Find cameras** and wait a few seconds for answers.
+
+Each answer shows its detected manufacturer (for example **Reolink**).
+When detection fails, pick the maker from the list so the right defaults apply.
+
+Check the cameras you want, optionally entering each camera's **Login** and **Password**.
+Leave the login empty to try manufacturer default credentials.
+Enter the real credentials when you know them: some cameras (including Reolink) briefly lock logins after repeated failures.
+Click **Add selected**. The page resolves each camera's stream URLs over ONVIF and adds the camera with the correct host, port, and paths.
+
+Cameras that are already added show an **added** badge and cannot be selected again.
+If a camera fails, the dialog tells you why: **ONVIF unreachable**, **No credential worked**, or **No usable stream URL**.
+Cameras without ONVIF never appear in the scan; click **Add manually** to enter one by hand.
+
+## Check a connection
+
+Click **Check connection** on a camera row to probe its web and MJPEG URLs.
+The page reports each leg as **OK**, an HTTP status code, or **F** when unreachable.
 
 ## Edit a camera
 
@@ -135,8 +156,6 @@ Click **Delete preset** to remove the selected preset.
 
 These camera features are planned but not built:
 
-- ONVIF setup wizard, port probe, and connection check.
-- Automatic camera discovery on your network.
 - Per-camera FPS and resolution tweaks.
 - Video adjustments (brightness, contrast, saturation, hue).
 - Re-encode settings.
